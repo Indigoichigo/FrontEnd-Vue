@@ -7,25 +7,28 @@ import VueRouter from 'vue-router';
 // import AppDirective from './App_directive.vue'
 // import AppHTTP from './App_HTTP.vue';
 // import AppRouter from './App_Router.vue';
-// import { routes } from './routers';
-import AppVuex from './App_vuex.vue';
+import { routes } from './routers';
+// import AppVuex from './App_vuex.vue';
 import { store } from './store_vuex/store';
 
 
 new Vue({
   el: '#app',
-  // router,
+  router,
   store,
   render: h => h(AppVuex)
 })
 
-// Vue router
-// Vue.use(VueRouter);
 
-// const router = new VueRouter({
-//   routes,
-//   mode: 'history'
-// })
+
+
+Vue router
+Vue.use(VueRouter);
+
+const router = new VueRouter({
+  routes,
+  mode: 'history'
+})
 
 
 // // global filter
