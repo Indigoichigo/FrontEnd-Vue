@@ -22,7 +22,7 @@ new Vue({
 
 
 
-Vue router
+//Vue router
 Vue.use(VueRouter);
 
 const router = new VueRouter({

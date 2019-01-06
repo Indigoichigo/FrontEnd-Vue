@@ -2,6 +2,7 @@
   <div id="app">
     <app-header />
     <router-view></router-view>
+    <img src="../assets/logo.png" alt="">
   </div>
 </template>
 

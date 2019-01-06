@@ -2,9 +2,8 @@ var path = require('path')
 var webpack = require('webpack')
 
 module.exports = {
-  // entry: './udemy_src/main.js',
+  entry: './udemy_src/project-stock_trader/main.js',
   // entry: './practice_src/main.js',
-  entry: './udemy_src/axios/main.js',
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/dist/',
