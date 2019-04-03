@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+    <title>Vue</title>
+  </head>
+  <body>
+    <div id="app">
+      {{ sayHi }}
+
+      <button @click="changeSayhi()">click me to change sayhi</button>
+      <TestCom></TestCom>
+      <greeter :name="name" :age="age"></greeter>
+      <ul>
+        <li v-for="item in data" :key="item.id">
+          {{ item.id }}, {{ item.title }}
+        </li>
+      </ul>
+    </div>
+
+    <script src="vue_practice.js"></script>
+
+    <script>
+      Vue.component('testcom', {
+        template: '<div>{{ sayBye }}</div>',
+        data() {
+          return {
+            sayBye: 'byeeeee',
+          };
+        },
+      });
+
+      Vue.component('greeter', {
+        template:
+          '<div><h1> Hello, {{ text }}!</h1><h2>{{ name }}, {{ age }}</h2></div>',
+        // props: ['name', 'sayhi'],
+        props: {
+          name: {
+            type: String,
+          },
+          age: {
+            type: Number,
+          },
+        },
+        data() {
+          return {
+            text: 'text111',
+          };
+        },
+      });
+
+      const axiosApi = axios.create({
+        baseURL: 'https://jsonplaceholder.typicode.com/',
+      });
+
+      new Vue({
+        el: '#app',
+        data: {
+          sayHi: 'hellooo',
+          name: 'Joe',
+          age: 25,
+          data: [],
+        },
+        methods: {
+          changeSayhi: function() {
+            this.sayHi = 'helllllo';
+          },
+        },
+        created: async function() {
+          try {
+            const res = await axiosApi.get('/posts');
+            this.data = res.data;
+          } catch (e) {
+            console.log(e);
+          }
+        },
+      });
+    </script>
+  </body>
+</html>
